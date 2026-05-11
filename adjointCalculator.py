@@ -42,6 +42,21 @@ def cofactorMatrixCalc(matrix, size):
 
     return cofactorMatrix
 
+def transposeMatrixCalc(matrix, size):
+    transposedMatrix = []
+    for i in range(size):
+        newRow = []
+        for j in range(size):
+            newRow.append(0)
+        transposedMatrix.append(newRow)
+
+    for i in range(size):
+        for j in range(size):
+            transposedMatrix[j][i] = matrix[i][j]
+            
+    return transposedMatrix
+
+
 matrix = []
 row = 0
 column = 0
@@ -56,4 +71,7 @@ for i in range(size):
     column = 0
     matrix.append(newRow)
 
-printMatrix(cofactorMatrixCalc(matrix, size))
+printMatrix(matrix)
+print()
+printMatrix(transposeMatrixCalc(matrix, size))
+
