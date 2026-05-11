@@ -53,8 +53,26 @@ def transposeMatrixCalc(matrix, size):
     for i in range(size):
         for j in range(size):
             transposedMatrix[j][i] = matrix[i][j]
-
+            
     return transposedMatrix
+
+def inverseCalc(matrix, size):
+    cofactorMatrix = cofactorMatrixCalc(matrix, size)
+    adjointMatrix = transposeMatrixCalc(cofactorMatrix, size)
+    determinant = determinantCalc(matrix)
+
+    inverseMatrix = []
+    for i in range(size):
+        newRow = []
+        for j in range(size):
+            newRow.append(0)
+        inverseMatrix.append(newRow)
+
+    for i in range(size):
+        for j in range(size):
+            inverseMatrix[i][j] = adjointMatrix[i][j] * (1/determinant)
+    
+    return inverseMatrix
 
 
 matrix = []
@@ -71,4 +89,4 @@ for i in range(size):
     column = 0
     matrix.append(newRow)
 
-printMatrix(transposeMatrixCalc(matrix, size))
+printMatrix(inverseCalc(matrix, size))
